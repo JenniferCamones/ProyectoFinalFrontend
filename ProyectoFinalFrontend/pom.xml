@@ -50,6 +50,11 @@
 		<version>2.25.1</version>
 		<!-- 3.1.0-M8 -->
 	</dependency>
+	<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.13</version> <!-- Ajusta la versión según la última disponible -->
+  </dependency>
     
   </dependencies>
   <build>
