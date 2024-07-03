@@ -16,8 +16,6 @@ public class Perfil {
 						+ nombre + "]";
 	}
 
-
-
 	public Perfil() {
 		//super();
 	}

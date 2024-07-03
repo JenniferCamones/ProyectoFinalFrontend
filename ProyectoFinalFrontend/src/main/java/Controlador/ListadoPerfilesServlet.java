@@ -19,6 +19,8 @@ import java.io.IOException;
 
 @WebServlet("/listadoPerfiles")
 public class ListadoPerfilesServlet extends HttpServlet {
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String apiUrl = "http://localhost:8080/ProyectoFinal/App/Perfil/listar";
         HttpClient httpClient = HttpClients.createDefault();
@@ -39,4 +41,7 @@ public class ListadoPerfilesServlet extends HttpServlet {
             response.getWriter().println("Error al obtener la lista de perfiles. Código de estado: " + statusCode);
         }
     }
+
+ 
+
 }
