@@ -4,8 +4,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff; /* Color de fondo */
+        padding: 20px;
+    }
+    h2 {
+        color: #008000; /* Verde */
+    }
+    form {
+        background-color: #ffffe0; /* Amarillo claro */
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+        margin: auto;
+    }
+    input[type="text"], input[type="submit"] {
+        width: calc(100% - 20px);
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #008000; /* Verde */
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #006400; /* Verde oscuro */
+    }
+</style>
+
     <meta charset="UTF-8">
-    <title>Listado de Perfiles</title>
+
+    <!-- Formulario para registrar un nuevo Perfil -->
+    
+    <form action="PerfilServlet" method="post">
+    <h2>Registrar Perfil</h2>
+        Nombre: <input type="text" name="nomcl3"><br>        
+        <input type="submit" value="Registrar">
+    </form>
+    
+<hr>
+
+    <title>Listado de Perfil</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,37 +102,37 @@
 </head>
 <body>
     <div class="container">
-        <h1>Listado de Perfiles</h1>
+        <h1>Listado de Perfil</h1>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
- <%-- Iterar sobre la lista de perfiles y mostrar cada uno --%>
-             <%-- Convertir la respuesta JSON a una lista de perfiles --%>
+ <%-- Iterar sobre la lista de Perfil y mostrar cada uno --%>
+             <%-- Convertir la respuesta JSON a una lista de Perfil --%>
             <%
-                String perfilesJson = (String) request.getAttribute("perfiles");              
+                String PerfilJson = (String) request.getAttribute("perfiles");              
                 Gson gson = new Gson();
-                Perfil[] perfiles = gson.fromJson(perfilesJson, Perfil[].class);
-              for (Perfil perfil : perfiles) {
+                Perfil[] Perfil = gson.fromJson(PerfilJson, Perfil[].class);
+              for (Perfil c : Perfil) {
             %>
                     <tr>
-                        <td><%= perfil.getIdPerfil() %></td>
-                        <td><%= perfil.getNombre() %></td>
+                        <td><%= c.getIdPerfil() %></td>
+                        <td><%= c.getNombre() %></td>                        
                         <td class="actions">
-                            <a href="edicionPerfil.jsp?id=<%= perfil.getIdPerfil() %>">Editar</a>
-                            <a href="eliminarPerfil?id=<%= perfil.getIdPerfil() %>">Eliminar</a>
+                            <a href="PerfilServlet?id=<%= c.getIdPerfil()%>&action=editar&nombre=<%= c.getNombre()%>">Editar</a>
+                            <a href="PerfilServlet?id=<%= c.getIdPerfil()%>&action=eliminar">Eliminar</a>
                         </td>
                     </tr>
                 <% } %>
             </tbody>
         </table>
-        <br>
-        <a href="registroPerfil.jsp" style="text-decoration: none; display: block; text-align: center; padding: 10px; background-color: #4CAF50; color: white; border-radius: 4px;">Registrar Nuevo Perfil</a>
+        <br>        
     </div>
 </body>
 </html>
+	
